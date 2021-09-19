@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Typography, message, Row, Col, Spin, Empty } from 'antd'
 import FoodCard from '../components/FoodCard'
+import config from './../config'
 
 const { Title } = Typography
 
@@ -11,7 +12,7 @@ function Landing() {
     useEffect(() => {
         async function fetchFoodEntries() {
             console.log(process.env)
-            let response = (await fetch(process.env.REACT_APP_API_URL + '/food').then((res) => res.json()))
+            let response = (await fetch(config.apiUrl + '/food').then((res) => res.json()))
             setFoodEntries(response)
             setLoaded(true)
         }
