@@ -27,7 +27,7 @@ function Landing() {
                     <Row gutter={[16]} justify='center'>
                         <Col xs={24} md={18}>
                             <Col span={24} className='text-center'>
-                                <Title> FreeFood@MIT </Title>
+                                <Title> FreeFood@MIT 🍌 </Title>
                             </Col>
                             <Row gutter={[12, 24]} justify='center'>
                                 {
