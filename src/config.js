@@ -3,7 +3,7 @@ import merge from 'lodash/merge'
 const config = {
   all: {
     env: process.env.NODE_ENV || 'development',
-    apiUrl: 'http://localhost:8081',
+    apiUrl: 'https://freefoodserver-ek5lznmwxa-uc.a.run.app',
     supportUrl: 'mailto:freefoodapp@mit.edu',
     GAUniversalID : "UA-207896143-1"
   },
