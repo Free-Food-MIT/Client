@@ -5,19 +5,13 @@ import moment from 'moment'
 import PropTypes from 'prop-types'
 
 /* Helper function to determine the time label */
-function getTimeLabel (timestamp) {
-    let now = moment()
+function getTimeLabel(timestamp) {
     let eventTime = moment(timestamp)
-    let moreInfo = eventTime.format("M/d")
-    if (eventTime < now.add(2, "hours")) {
-        moreInfo = "right now 🔥"
-    } else if (eventTime < now.add(1, "day").startOf("day")) {
-        moreInfo = "today"
-    }
-    return `${eventTime.format("h:m a")} - ${moreInfo}`
+
+    return `${eventTime.format("h:m a")} - ${eventTime.fromNow()} ${moment().diff(eventTime, 'seconds') <= 600 ? '🔥' : ''}`
 }
 
-function FoodCard (props) {
+function FoodCard(props) {
     return (
         <Card className='card' actions={
             [
@@ -27,7 +21,7 @@ function FoodCard (props) {
             <Card.Meta title={props.title} description={getTimeLabel(props.timestamp)} />
             <br />
             <Typography.Paragraph>
-                {`By ${props.poster} @ ${props.description}`}
+                {`By ${props.poster} ${props.description ? `- ${props.description}` : ''}`}
             </Typography.Paragraph>
         </Card>
     )
