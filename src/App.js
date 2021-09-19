@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Helmet } from 'react-helmet'
+import { Switch, BrowserRouter as Router, Route } from 'react-router-dom'
+import DocumentTitle from 'react-document-title'
+import PropTypes from 'prop-types'
+import { Layout } from 'antd'
+import Landing from './pages/Landing'
+
+import * as routes from './constant_routes'
+
+Layout.propTypes = {
+  header: PropTypes.bool,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <DocumentTitle title='FreeFood@MIT'>
+      <>
+      <Helmet>
+        <meta name='description' content='Finding food at MIT–made easier.' />
+      </Helmet>
+      <Switch>
+        <Route name='landing' exact path={routes.LANDING} render={() => <Layout.Content> <Landing /> </Layout.Content>} />
+        <Route name='food-entry' path={routes.FOOD_ENTRY} />
+      </Switch>
+      </>
+    </DocumentTitle>
+    </>
   );
 }
 
-export default App;
+function AppWithRouter () {
+  return (
+    <Router>
+      <App />
+    </Router>
+  )
+}
+
+export default AppWithRouter;
